@@ -3,6 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/@devxiyang/agent-skill)](https://www.npmjs.com/package/@devxiyang/agent-skill)
 [![npm downloads](https://img.shields.io/npm/dm/@devxiyang/agent-skill)](https://www.npmjs.com/package/@devxiyang/agent-skill)
 [![node >=18](https://img.shields.io/node/v/@devxiyang/agent-skill)](https://www.npmjs.com/package/@devxiyang/agent-skill)
+[![license](https://img.shields.io/npm/l/@devxiyang/agent-skill)](./LICENSE)
 
 SDK for skill discovery and registration — integrates into any agent.
 
