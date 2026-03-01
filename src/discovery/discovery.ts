@@ -3,7 +3,7 @@ import path from 'node:path';
 import type { SkillEntry, SkillMissingReason, SkillRoot } from '../types.js';
 import type { SkillValidator } from '../validator.js';
 import { defaultValidator } from '../validators/index.js';
-import { parseFrontmatter, stripFrontmatter } from './frontmatter.js';
+import { parseFrontmatter } from './frontmatter.js';
 
 /**
  * Discovers and loads skills from one or more root directories.
@@ -74,12 +74,13 @@ export class SkillDiscovery {
   }
 
   /**
-   * Reads a SKILL.md file and returns its body with the frontmatter block stripped.
-   * This is the content suitable for injecting into an agent's context.
+   * Reads a SKILL.md file and returns its full content — frontmatter and body — for
+   * injection into an agent's context. The agent can read the frontmatter metadata
+   * (name, description, requires, os, etc.) alongside the instructions, and use that
+   * information autonomously (e.g. installing a missing dependency declared in `requires`).
    */
   async load(filePath: string): Promise<string> {
-    const content = await fs.readFile(filePath, 'utf8');
-    return stripFrontmatter(content);
+    return fs.readFile(filePath, 'utf8');
   }
 
   // ---------------------------------------------------------------------------

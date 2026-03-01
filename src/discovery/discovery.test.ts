@@ -135,11 +135,13 @@ describe('SkillDiscovery.list()', () => {
 });
 
 describe('SkillDiscovery.load()', () => {
-  it('returns body without frontmatter', async () => {
+  it('returns full SKILL.md content including frontmatter', async () => {
     const root = path.join(tmpDir, 'load');
     const dir = await makeSkillDir(root, 'mskill', 'name: mskill', 'This is the body.');
     const filePath = path.join(dir, 'SKILL.md');
     const d = new SkillDiscovery([{ path: root, scope: 'system' }]);
-    expect(await d.load(filePath)).toBe('This is the body.');
+    const content = await d.load(filePath);
+    expect(content).toContain('name: mskill');
+    expect(content).toContain('This is the body.');
   });
 });

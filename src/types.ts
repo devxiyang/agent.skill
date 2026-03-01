@@ -31,7 +31,11 @@ export type SkillEntry = {
   /** Absolute path to the SKILL.md file inside the skill folder. */
   filePath: string;
   scope: SkillScope;
-  /** True when all requires/os constraints are satisfied in the current environment. */
+  /**
+   * True when all requires/os constraints are satisfied in the current environment.
+   * Informational only — the skill content should still be passed to the agent even
+   * when false, so the agent can autonomously resolve missing dependencies.
+   */
   eligible: boolean;
   /** Unmet requirements; empty when eligible is true. */
   missing: SkillMissingReason[];

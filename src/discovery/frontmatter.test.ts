@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { parseFrontmatter, stripFrontmatter } from './frontmatter.js';
+import { parseFrontmatter } from './frontmatter.js';
 
 const wrap = (body: string, content = '') =>
   `---\n${body}\n---\n${content}`;
@@ -54,13 +54,3 @@ describe('parseFrontmatter', () => {
   });
 });
 
-describe('stripFrontmatter', () => {
-  it('strips frontmatter block', () => {
-    const result = stripFrontmatter(wrap('name: x', 'hello world'));
-    expect(result).toBe('hello world');
-  });
-
-  it('returns trimmed content when no frontmatter', () => {
-    expect(stripFrontmatter('  content  ')).toBe('content');
-  });
-});

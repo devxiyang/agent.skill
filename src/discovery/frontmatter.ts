@@ -39,14 +39,6 @@ export function parseFrontmatter(content: string): SkillFrontmatter {
   };
 }
 
-/**
- * Strips the frontmatter block from a SKILL.md file and returns the trimmed body.
- * This is the markdown content passed to the agent as skill instructions.
- */
-export function stripFrontmatter(content: string): string {
-  return matter(content).content.trim();
-}
-
 // ---------------------------------------------------------------------------
 
 /**
