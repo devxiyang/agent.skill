@@ -2,7 +2,7 @@ import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
-import { copySkills } from './copy.js';
+import { copySkills } from '../src/copy.js';
 
 let tmpDir: string;
 let srcRoot: string;

@@ -2,8 +2,8 @@ import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
-import { SkillDiscovery } from './discovery.js';
-import type { SkillValidator } from '../validator.js';
+import { SkillDiscovery } from '../src/discovery/discovery.js';
+import type { SkillValidator } from '../src/validator.js';
 
 // ---------------------------------------------------------------------------
 // Fixture helpers

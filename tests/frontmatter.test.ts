@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { parseFrontmatter } from './frontmatter.js';
+import { parseFrontmatter } from '../src/discovery/frontmatter.js';
 
 const wrap = (body: string, content = '') =>
   `---\n${body}\n---\n${content}`;
@@ -44,4 +44,3 @@ describe('parseFrontmatter', () => {
     expect(fm.requiresOs).toContain('linux');
   });
 });
-
