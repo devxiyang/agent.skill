@@ -1,0 +1,218 @@
+---
+name: shell
+description: Write and run shell scripts. Use for automation, file operations, pipelines, and system tasks. Covers bash/zsh (macOS/Linux) and PowerShell (Windows).
+tags: shell,cli
+---
+
+# Shell Skill
+
+## Unix (bash/zsh)
+
+### Variables & strings
+
+```bash
+name="alice"
+echo "Hello, $name"
+echo "Home is ${HOME}"
+
+# Command substitution
+files=$(ls -1 | wc -l)
+today=$(date +%Y-%m-%d)
+```
+
+### Conditionals
+
+```bash
+if [ -f "file.txt" ]; then
+  echo "exists"
+elif [ -d "dir" ]; then
+  echo "is a directory"
+else
+  echo "not found"
+fi
+
+# One-liner
+[ -f "file.txt" ] && echo "exists" || echo "missing"
+```
+
+### Loops
+
+```bash
+# Over a list
+for name in alice bob carol; do
+  echo "Hello, $name"
+done
+
+# Over files
+for f in *.log; do
+  echo "Processing $f"
+done
+
+# While loop
+while IFS= read -r line; do
+  echo "$line"
+done < input.txt
+```
+
+### Functions
+
+```bash
+greet() {
+  local name="$1"
+  echo "Hello, $name"
+}
+greet "alice"
+```
+
+### Pipes & redirection
+
+```bash
+# Pipe output
+cat file.txt | grep "error" | sort | uniq -c
+
+# Redirect stdout
+echo "log" >> output.log
+
+# Redirect stderr
+command 2>> errors.log
+
+# Redirect both
+command > output.log 2>&1
+
+# Discard output
+command > /dev/null 2>&1
+```
+
+### Error handling
+
+```bash
+# Exit on first error
+set -e
+
+# Exit on unset variable
+set -u
+
+# Catch pipe failures
+set -o pipefail
+
+# Combine (recommended for scripts)
+set -euo pipefail
+
+# Check exit code
+if ! command; then
+  echo "command failed"
+fi
+```
+
+### Useful patterns
+
+```bash
+# Find files by name
+find . -name "*.log" -type f
+
+# Find and delete
+find . -name "*.tmp" -type f -delete
+
+# Find and execute
+find . -name "*.js" -exec wc -l {} +
+
+# Filter with grep
+grep -r "TODO" src/ --include="*.ts"
+
+# Transform with awk
+awk '{print $1, $3}' data.txt
+
+# Process with xargs
+find . -name "*.log" | xargs rm -f
+```
+
+---
+
+## Windows (PowerShell)
+
+### Variables & strings
+
+```powershell
+$name = "alice"
+Write-Output "Hello, $name"
+
+# Command substitution
+$files = (Get-ChildItem).Count
+$today = Get-Date -Format "yyyy-MM-dd"
+```
+
+### Conditionals
+
+```powershell
+if (Test-Path "file.txt") {
+    Write-Output "exists"
+} elseif (Test-Path "dir" -PathType Container) {
+    Write-Output "is a directory"
+} else {
+    Write-Output "not found"
+}
+```
+
+### Loops
+
+```powershell
+# Over a list
+foreach ($name in "alice", "bob", "carol") {
+    Write-Output "Hello, $name"
+}
+
+# Over files
+Get-ChildItem *.log | ForEach-Object {
+    Write-Output "Processing $($_.Name)"
+}
+```
+
+### Functions
+
+```powershell
+function Greet {
+    param($Name)
+    Write-Output "Hello, $Name"
+}
+Greet "alice"
+```
+
+### Pipes & redirection
+
+```powershell
+# Pipe objects
+Get-Content file.txt | Select-String "error" | Sort-Object | Get-Unique
+
+# Redirect to file
+"log" | Out-File -Append output.log
+
+# Discard output
+command | Out-Null
+```
+
+### Error handling
+
+```powershell
+# Stop on error
+$ErrorActionPreference = "Stop"
+
+# Try/catch
+try {
+    SomeCommand
+} catch {
+    Write-Error "Failed: $_"
+}
+```
+
+### Useful patterns
+
+```powershell
+# Find files
+Get-ChildItem -Recurse -Filter "*.log"
+
+# Find and delete
+Get-ChildItem -Recurse -Filter "*.tmp" | Remove-Item
+
+# Search in files
+Select-String -Path "src\*.ts" -Pattern "TODO"
+```
