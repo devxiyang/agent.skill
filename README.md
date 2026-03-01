@@ -1,5 +1,9 @@
 # agent.skill
 
+[![npm version](https://img.shields.io/npm/v/@devxiyang/agent-skill)](https://www.npmjs.com/package/@devxiyang/agent-skill)
+[![npm downloads](https://img.shields.io/npm/dm/@devxiyang/agent-skill)](https://www.npmjs.com/package/@devxiyang/agent-skill)
+[![node >=18](https://img.shields.io/node/v/@devxiyang/agent-skill)](https://www.npmjs.com/package/@devxiyang/agent-skill)
+
 SDK for skill discovery and registration — integrates into any agent.
 
 A **skill** is a folder containing a `SKILL.md` file (with YAML frontmatter + instructions) and optional resources (scripts, references, assets). This SDK provides the tooling to discover, validate, and load skills into an agent's context.
