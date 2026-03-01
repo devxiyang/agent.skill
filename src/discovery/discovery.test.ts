@@ -110,9 +110,8 @@ describe('SkillDiscovery.list()', () => {
   });
 
   it('marks skill ineligible when OS does not match', async () => {
-    const meta = JSON.stringify({ octoii: { os: 'unsupported-os-xyz' } });
     const root = path.join(tmpDir, 'ineligible-os');
-    await makeSkillDir(root, 'platform', `name: platform\nmetadata: '${meta}'`);
+    await makeSkillDir(root, 'platform', `name: platform\nos: unsupported-os-xyz`);
 
     const validator: SkillValidator = {
       checkBin: async () => true,
