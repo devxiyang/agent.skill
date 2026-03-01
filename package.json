@@ -1,6 +1,6 @@
 {
   "name": "@devxiyang/agent-skill",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "SDK for skill discovery and registration — integrates into any agent",
   "license": "MIT",
   "repository": {
