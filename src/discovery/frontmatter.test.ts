@@ -52,5 +52,11 @@ describe('parseFrontmatter', () => {
     const fm = parseFrontmatter(wrap('name: x\nalways: maybe'));
     expect(fm.always).toBe(false);
   });
+
+  it('parses top-level os field', () => {
+    const fm = parseFrontmatter(wrap('name: tmux\nos: darwin,linux'));
+    expect(fm.requiresOs).toContain('darwin');
+    expect(fm.requiresOs).toContain('linux');
+  });
 });
 

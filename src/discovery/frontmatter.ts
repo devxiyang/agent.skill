@@ -35,7 +35,7 @@ export function parseFrontmatter(content: string): SkillFrontmatter {
     tags: parseCsv(data.tags ?? meta.tags),
     requiresBins: requires.bins,
     requiresEnvs: requires.envs,
-    requiresOs: parseCsv(meta.os),
+    requiresOs: parseCsv(data.os ?? meta.os),
   };
 }
 
