@@ -30,6 +30,8 @@ name: github
 description: Interact with GitHub using the gh CLI.
 requires: bin:gh,env:GITHUB_TOKEN
 os: darwin,linux
+always: false
+tags: github,vcs
 ---
 ```
 
@@ -39,7 +41,8 @@ os: darwin,linux
 | `description` | yes | What the skill does and when to use it |
 | `requires` | no | `bin:<name>` and/or `env:<NAME>` comma-separated |
 | `os` | no | Allowed platforms: `darwin`, `linux`, `win32` |
-| `always` | no | Load into agent context on every run |
+| `always` | no | If `true`, inject into agent context on every run |
+| `tags` | no | Comma-separated labels for categorisation |
 
 ## Usage
 
@@ -54,7 +57,7 @@ const discovery = new SkillDiscovery([
 // Discover all skills with eligibility info
 const entries = await discovery.list();
 
-// Load the body of a SKILL.md (frontmatter stripped)
+// Load full SKILL.md content (frontmatter + body) for injection into agent context
 const content = await discovery.load(entries[0].filePath);
 ```
 

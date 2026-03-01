@@ -25,6 +25,8 @@ name: skill-name
 description: What this skill does and when to use it. Be specific about triggers.
 requires: bin:tool,env:API_KEY   # optional
 os: darwin,linux                  # optional, omit for all platforms
+always: false                     # optional, set true to inject on every agent run
+tags: category,label              # optional, comma-separated
 ---
 
 # Skill Name
@@ -32,7 +34,7 @@ os: darwin,linux                  # optional, omit for all platforms
 Instructions for the agent...
 ```
 
-Only `name` and `description` are required in frontmatter.
+Only `name` and `description` are required. All other frontmatter fields are optional.
 
 ## Writing good descriptions
 
