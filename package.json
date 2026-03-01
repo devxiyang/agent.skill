@@ -1,6 +1,6 @@
 {
   "name": "@devxiyang/agent-skill",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "SDK for skill discovery and registration — integrates into any agent",
   "license": "MIT",
   "repository": {
@@ -53,6 +53,6 @@
     "vitest": "^4.0.18"
   },
   "dependencies": {
-    "gray-matter": "^4.0.3"
+    "gray-matter": ">=4.0.3"
   }
 }
