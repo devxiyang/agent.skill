@@ -1,7 +1,8 @@
 ---
 name: shell
-description: Write and run shell scripts. Use for automation, file operations, pipelines, and system tasks. Covers bash/zsh (macOS/Linux) and PowerShell (Windows).
-tags: shell,cli
+description: Write and run shell scripts, and make HTTP requests with curl. Use for automation, file operations, pipelines, system tasks, fetching web pages, and calling REST APIs. Covers bash/zsh (macOS/Linux) and PowerShell (Windows).
+requires: bin:curl
+tags: shell,cli,web,http
 ---
 
 # Shell Skill
@@ -216,3 +217,93 @@ Get-ChildItem -Recurse -Filter "*.tmp" | Remove-Item
 # Search in files
 Select-String -Path "src\*.ts" -Pattern "TODO"
 ```
+
+---
+
+## HTTP / curl
+
+Verify curl is available:
+
+```bash
+curl --version
+```
+
+If missing, load `references/install-curl.md`.
+
+### Fetch a web page
+
+```bash
+curl -sL "https://example.com"
+```
+
+### REST API calls
+
+```bash
+# GET
+curl -s "https://api.example.com/users" | jq .
+
+# POST JSON
+curl -s -X POST "https://api.example.com/items" \
+  -H "Content-Type: application/json" \
+  -d '{"name": "foo"}'
+
+# PUT / DELETE
+curl -s -X PUT "https://api.example.com/items/1" \
+  -H "Content-Type: application/json" \
+  -d '{"name": "bar"}'
+curl -s -X DELETE "https://api.example.com/items/1"
+
+# Auth header
+curl -s "https://api.example.com/data" \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+### Form data & file upload
+
+```bash
+curl -s -X POST "https://example.com/login" \
+  -d "username=alice&password=secret"
+
+curl -s -X POST "https://example.com/upload" \
+  -F "file=@/path/to/file.pdf" \
+  -F "description=My file"
+```
+
+### Download a file
+
+```bash
+curl -sL "https://example.com/file.zip" -o /tmp/file.zip
+curl -C - -L "https://example.com/large.zip" -o /tmp/large.zip   # resume
+```
+
+### Inspect response
+
+```bash
+curl -sI "https://example.com"                            # headers only
+curl -sD - "https://example.com"                          # headers + body
+curl -s -o /dev/null -w "%{http_code}" "https://example.com"  # status code
+```
+
+### Tips
+
+- `-s` silences progress, `-L` follows redirects, `-v` debugs
+- `--max-time 10` sets timeout, `--compressed` enables gzip
+- `-sk` skips certificate check (testing only)
+
+---
+
+## Destructive Operations
+
+Always confirm with the user before running any of the following:
+
+| Command | Risk |
+|---------|------|
+| `rm -rf <path>` | Recursively deletes files/directories with no recovery |
+| `find ... -delete` / `find ... -exec rm` | Bulk file deletion, easy to match unintended paths |
+| `> file` (output redirect, not `>>`) | Silently overwrites and truncates existing file |
+| `truncate -s 0 file` | Empties file contents permanently |
+| `dd if=... of=...` | Overwrites device or file at block level |
+| `mkfs` / `fdisk` / `diskutil eraseDisk` | Formats and wipes entire disk partition |
+| `Get-ChildItem ... \| Remove-Item -Recurse` (PowerShell) | Recursive deletion |
+
+Before executing, show the user the exact path or glob that will be affected, and ask for explicit confirmation.

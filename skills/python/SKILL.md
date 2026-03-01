@@ -149,3 +149,17 @@ parser.add_argument("--output", "-o", default="out.txt")
 parser.add_argument("--verbose", "-v", action="store_true")
 args = parser.parse_args()
 ```
+
+## Destructive Operations
+
+Always confirm with the user before running any of the following:
+
+| Pattern | Risk |
+|---------|------|
+| `shutil.rmtree(path)` | Recursively deletes entire directory tree permanently |
+| `os.remove(path)` in a loop or with glob | Bulk file deletion, easy to match unintended files |
+| `open(path, 'w')` on an existing file | Silently overwrites and truncates file content |
+| `Path.write_text` / `Path.write_bytes` on existing file | Same as above |
+| `subprocess.run(['rm', '-rf', ...])` | Shell deletion triggered from Python code |
+
+Before executing, show the user the exact path or pattern that will be affected, and ask for explicit confirmation.
