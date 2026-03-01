@@ -2,6 +2,7 @@
 name: web
 description: Fetch web pages, call REST APIs, download files, and extract content from URLs using curl.
 requires: bin:curl
+tags: web,http
 ---
 
 # Web Skill

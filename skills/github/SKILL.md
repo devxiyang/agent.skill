@@ -2,6 +2,7 @@
 name: github
 description: Interact with GitHub using the `gh` CLI. Use for issues, pull requests, CI runs, code review, and GitHub API queries.
 requires: bin:gh
+tags: vcs,github
 ---
 
 # GitHub Skill

@@ -3,6 +3,7 @@ name: tmux
 description: Remote-control tmux sessions for interactive CLIs by sending keystrokes and reading pane output. Use when a command requires an interactive TTY.
 requires: bin:tmux
 os: darwin,linux
+tags: terminal,tmux
 ---
 
 # tmux Skill

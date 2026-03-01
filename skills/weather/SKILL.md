@@ -2,6 +2,7 @@
 name: weather
 description: Get current weather and forecasts for any location. No API key required.
 requires: bin:curl
+tags: weather,web
 ---
 
 # Weather Skill

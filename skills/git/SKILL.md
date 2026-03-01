@@ -2,6 +2,7 @@
 name: git
 description: Local git operations — branching, committing, merging, rebasing, history inspection, and conflict resolution.
 requires: bin:git
+tags: vcs,git
 ---
 
 # Git Skill
