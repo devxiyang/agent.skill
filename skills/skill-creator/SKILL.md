@@ -1,6 +1,7 @@
 ---
 name: skill-creator
 description: Create or update skills. Use when designing, structuring, or writing a new skill folder with SKILL.md and optional resources.
+tags: skill,meta
 ---
 
 # Skill Creator
