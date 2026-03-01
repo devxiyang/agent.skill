@@ -1,0 +1,58 @@
+{
+  "name": "@devxiyang/agent-skill",
+  "version": "0.0.1-beta",
+  "description": "SDK for skill discovery and registration — integrates into any agent",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devxiyang/agent.skill.git"
+  },
+  "keywords": [
+    "agent",
+    "skill",
+    "skill-discovery",
+    "skill-registry",
+    "llm",
+    "sdk",
+    "typescript"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "skills"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "peerDependencies": {
+    "@types/node": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "@types/node": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.8.0",
+    "vitest": "^4.0.18"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3"
+  }
+}
